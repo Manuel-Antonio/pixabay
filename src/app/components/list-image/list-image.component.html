@@ -1,0 +1,102 @@
+<div class="mt-5" *ngIf="isValidResult">
+  <p class="alert alert-info rounded shadow">
+    <span class="style-result">Resultados:</span
+    ><span class="style-total"> {{ totalImage }}</span>
+  </p>
+  <div class="d-flex justify-content-center mt-4">
+    <ul class="pagination pagination-lg">
+      <li
+        class="page-item"
+        (click)="anteriorPagina()"
+        [ngClass]="paginaActual === 1 ? 'disabled' : ''"
+      >
+        <a class="page-link" href="#">&laquo; Anterior</a>
+      </li>
+      <li
+        class="page-item"
+        (click)="siguientePagina()"
+        [ngClass]="paginaActual === totalPaginas ? 'disabled' : ''"
+      >
+        <a class="page-link" href="#">Siguiente &raquo;</a>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 gap-3 justify-content-center mt-3"
+  >
+    <div
+      class="card text-white bg-primary m-0 p-0 border-0 rounded-3 overflow-hidden"
+      *ngFor="let imagen of imagenesList"
+    >
+      <div style="width: 100%; height: 200px; overflow: hidden">
+        <img
+          [src]="imagen?.previewURL"
+          class="card-img-top img-fluid"
+          style="object-fit: cover; height: 100%"
+          alt=""
+        />
+      </div>
+      <div class="card-body">
+        <div class="d-grid">
+          <a
+            [href]="imagen.largeImageURL"
+            target="_blank"
+            class="btn btn-success d-block style-btn rounded"
+          >
+            Ver Imagen
+          </a>
+          <div
+            class="p-0 m-0 d-flex gap-1 justify-content-center mt-4 flex-wrap"
+          >
+            <span
+              class="badge bg-light rounded"
+              *ngFor="let tag of formatTag(imagen.tags)"
+            >
+              {{ tag }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-secondary mt-1">
+        <div class="row justify-content-center p-2">
+          <div class="col d-flex align-items-center flex-column">
+            <b>Links</b>
+            <p>{{ imagen.likes }}</p>
+          </div>
+          <div class="col d-flex align-items-center flex-column">
+            <b>Views</b>
+            <p>{{ imagen.views }}</p>
+          </div>
+        </div>
+        <div class="row justify-content-center p-2">
+          <div class="col d-flex align-items-center flex-column">
+            <b>Comments</b>
+            <p>{{ imagen.comments }}</p>
+          </div>
+          <div class="col d-flex align-items-center flex-column">
+            <b>Download</b>
+            <p>{{ imagen.downloads }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <ul class="pagination pagination-lg">
+      <li
+        class="page-item"
+        (click)="anteriorPagina()"
+        [ngClass]="paginaActual === 1 ? 'disabled' : ''"
+      >
+        <a class="page-link" href="#">&laquo; Anterior</a>
+      </li>
+      <li
+        class="page-item"
+        (click)="siguientePagina()"
+        [ngClass]="paginaActual === totalPaginas ? 'disabled' : ''"
+      >
+        <a class="page-link" href="#">Siguiente &raquo;</a>
+      </li>
+    </ul>
+  </div>
+</div>
